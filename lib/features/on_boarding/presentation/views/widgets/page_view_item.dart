@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fruits_hub/main.dart';
 import 'package:svg_flutter/svg.dart';
 
 class PageViewItem extends StatelessWidget {
@@ -9,10 +8,12 @@ class PageViewItem extends StatelessWidget {
       required this.image,
       required this.backgroundImage,
       required this.title,
-      required this.subtitle});
+      required this.subtitle,
+      required this.isVisible});
   final String image, backgroundImage;
   final String subtitle;
   final Widget title;
+  final bool isVisible;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,9 +33,12 @@ class PageViewItem extends StatelessWidget {
               left: 0,
               child: SvgPicture.asset(image),
             ),
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text('تخط'),
+            Visibility(
+              visible: isVisible,
+              child: const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text('تخط'),
+              ),
             ),
           ],
         ),
