@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_hub/core/functions/on_genrate_route_function.dart';
+import 'package:fruits_hub/core/utils/colors.dart';
 import 'package:fruits_hub/features/splash/presentation/views/splash_view.dart';
 
 import 'generated/l10n.dart';
@@ -19,6 +20,12 @@ class FruitsHub extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       child: MaterialApp(
+        theme: ThemeData(
+            fontFamily: 'Cairo',
+            scaffoldBackgroundColor: Colors.white,
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: ColorsManager.primaryColor,
+            )),
         localizationsDelegates: const [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
