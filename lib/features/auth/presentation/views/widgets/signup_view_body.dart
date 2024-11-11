@@ -38,20 +38,25 @@ class SignUpViewBody extends StatelessWidget {
             SizedBox(height: 30.h),
             CustomButton(onPressed: () {}, text: 'إنشاء حساب جديد'),
             SizedBox(height: 26.h),
-            Text.rich(TextSpan(children: [
+            Text.rich(
               TextSpan(
-                  text: 'تمتلك حساب بالفعل؟',
-                  style: TextStyles.semiBold16
-                      .copyWith(color: const Color(0xff949D9E))),
-              TextSpan(
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      Navigator.pop(context);
-                    },
-                  text: ' تسجيل دخول',
-                  style: TextStyles.semiBold16
-                      .copyWith(color: ColorsManager.primaryColor)),
-            ]))
+                children: [
+                  TextSpan(
+                      text: 'تمتلك حساب بالفعل؟',
+                      style: TextStyles.semiBold16
+                          .copyWith(color: const Color(0xff949D9E))),
+                  TextSpan(
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.pop(context);
+                      },
+                    text: ' تسجيل دخول',
+                    style: TextStyles.semiBold16
+                        .copyWith(color: ColorsManager.primaryColor),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
