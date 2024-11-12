@@ -39,6 +39,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_screenutil: ^5.9.3
+  get_it: ^8.0.2
   shared_preferences: ^2.3.2
   svg_flutter: ^0.0.1
 
