@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_hub/constant.dart';
 import 'package:fruits_hub/core/services/shared_preferences.dart';
 import 'package:fruits_hub/core/utils/app_text_styels.dart';
-import 'package:fruits_hub/features/auth/presentation/views/login_view.dart';
+import 'package:fruits_hub/features/auth/presentation/views/signin_view.dart';
 import 'package:svg_flutter/svg.dart';
 
 class PageViewItem extends StatelessWidget {
@@ -45,7 +45,7 @@ class PageViewItem extends StatelessWidget {
                   onTap: () {
                     SharedPreferencesService.setBool(kIsOnBoardingSeen, true);
                     Navigator.pushReplacementNamed(
-                        context, LoginView.routeName);
+                        context, SigninView.routeName);
                   },
                   child: Text(
                     'تخط',
