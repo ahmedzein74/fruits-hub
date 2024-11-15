@@ -43,7 +43,7 @@ class PageViewItem extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: GestureDetector(
                   onTap: () {
-                    SharedPreferencesService.setBool(KIsOnBoardingSeen, true);
+                    SharedPreferencesService.setBool(kIsOnBoardingSeen, true);
                     Navigator.pushReplacementNamed(
                         context, LoginView.routeName);
                   },

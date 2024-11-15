@@ -1,1 +1,1 @@
-const KIsOnBoardingSeen = 'isOnBoardingSeen';
+const kIsOnBoardingSeen = 'isOnBoardingSeen';

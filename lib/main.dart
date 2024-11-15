@@ -1,8 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_hub/core/functions/on_genrate_route_function.dart';
+import 'package:fruits_hub/core/services/custom_bloc_observer.dart';
+import 'package:fruits_hub/core/services/get_it_services.dart';
 import 'package:fruits_hub/core/services/shared_preferences.dart';
 import 'package:fruits_hub/core/utils/colors.dart';
 import 'package:fruits_hub/features/splash/presentation/views/splash_view.dart';
@@ -12,9 +15,11 @@ import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = CustomBlocObserver();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  setupGetIt();
   await SharedPreferencesService.init();
   runApp(const FruitsHub());
 }

@@ -7,18 +7,26 @@ class CustomTextFormField extends StatelessWidget {
       {super.key,
       required this.hintText,
       required this.textInputType,
-      this.suffixIcon});
+      this.suffixIcon,
+      this.validator,
+      this.onSaved,
+      this.isPassword = false});
   final String hintText;
   final TextInputType textInputType;
   final Widget? suffixIcon;
-
+  final String? Function(String?)? validator;
+  final void Function(String?)? onSaved;
+  final bool isPassword;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 56.h, // حدد الارتفاع الذي تريده هنا
       child: TextFormField(
+        obscureText: isPassword,
+        onSaved: onSaved,
+        validator: validator,
         keyboardType: textInputType,
         decoration: InputDecoration(
+          isDense: true,
           suffixIcon: suffixIcon,
           contentPadding:
               EdgeInsets.symmetric(horizontal: 20.w, vertical: 17.h),
@@ -30,6 +38,8 @@ class CustomTextFormField extends StatelessWidget {
           fillColor: const Color(0xfff9fafa),
           border: buildBorder(),
           enabledBorder: buildBorder(),
+          focusedBorder: buildBorder(),
+          // focusedErrorBorder: buildErrorBorder(),
         ),
       ),
     );

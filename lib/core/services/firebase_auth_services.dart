@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hub/core/errors/exceptions.dart';
 
@@ -12,15 +14,42 @@ class FirebaseAuthServices {
       );
       return credential.user!;
     } on FirebaseAuthException catch (e) {
+      log('Exception in firebase auth: ${e.toString()} and e.code= ${e.code}');
       if (e.code == 'weak-password') {
-        throw CustomException(message: 'The password provided is too weak.');
+        throw CustomException(message: 'الرقم السري ضعيف');
       } else if (e.code == 'email-already-in-use') {
-        throw CustomException(message: 'Email already in use');
+        throw CustomException(message: 'البريد الالكتروني مستخدم بالفعل');
+      } else if (e.code == 'network-request-failed') {
+        throw CustomException(message: 'لا يوجد اتصال بالانترنت');
       } else {
-        throw CustomException(message: 'An error occurred . Please try again');
+        throw CustomException(message: 'حدث خطأ . يرجى المحاولة مرة أخرى');
       }
     } catch (e) {
-      throw CustomException(message: 'An error occurred . Please try again');
+      throw CustomException(message: 'حدث خطأ . يرجى المحاولة مرة أخرى');
+    }
+  }
+
+  Future<User> signInWithEmailAndPassword(
+      {required String email, required String password}) async {
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return credential.user!;
+    } on FirebaseAuthException catch (e) {
+      log('Exception in firebase auth: ${e.toString()} and e.code= ${e.code}');
+      if (e.code == 'user-not-found') {
+        throw CustomException(message: 'البريد الالكتروني غير مسجل');
+      } else if (e.code == 'wrong-password') {
+        throw CustomException(message: 'الرقم السري غير صحيح');
+      } else if (e.code == 'network-request-failed') {
+        throw CustomException(message: 'لا يوجد اتصال بالانترنت');
+      } else {
+        throw CustomException(message: 'حدث خطأ . يرجى المحاولة مرة أخرى');
+      }
+    } catch (e) {
+      throw CustomException(message: 'حدث خطأ . يرجى المحاولة مرة أخرى');
     }
   }
 }

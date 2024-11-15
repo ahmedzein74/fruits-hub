@@ -64,7 +64,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             padding: EdgeInsets.symmetric(horizontal: 16.0.w),
             child: CustomButton(
                 onPressed: () {
-                  SharedPreferencesService.setBool(KIsOnBoardingSeen, true);
+                  SharedPreferencesService.setBool(kIsOnBoardingSeen, true);
                   Navigator.pushReplacementNamed(context, LoginView.routeName);
                 },
                 text: 'ابدأ الان'),

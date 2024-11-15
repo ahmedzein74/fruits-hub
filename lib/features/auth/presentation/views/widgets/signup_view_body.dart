@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_hub/core/utils/app_text_styels.dart';
 import 'package:fruits_hub/core/utils/colors.dart';
-import 'package:fruits_hub/core/widgets/custom_button.dart';
-import 'package:fruits_hub/core/widgets/custom_text_form_field.dart';
-import 'package:fruits_hub/features/auth/presentation/views/widgets/terms_and_condition.dart';
+import 'package:fruits_hub/features/auth/presentation/views/widgets/signup_form.dart';
 
 class SignUpViewBody extends StatelessWidget {
   const SignUpViewBody({super.key});
@@ -18,25 +16,7 @@ class SignUpViewBody extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 24.h),
-            const CustomTextFormField(
-              hintText: '  الاسم كامل',
-              textInputType: TextInputType.name,
-            ),
-            SizedBox(height: 16.h),
-            const CustomTextFormField(
-              hintText: 'البريد  الالكترونى',
-              textInputType: TextInputType.emailAddress,
-            ),
-            SizedBox(height: 16.h),
-            const CustomTextFormField(
-              hintText: 'كلمة المرور',
-              textInputType: TextInputType.visiblePassword,
-              suffixIcon: Icon(Icons.remove_red_eye, color: Color(0xffC9CECF)),
-            ),
-            SizedBox(height: 16.h),
-            const TermsAndCondition(),
-            SizedBox(height: 30.h),
-            CustomButton(onPressed: () {}, text: 'إنشاء حساب جديد'),
+            const SignupForm(),
             SizedBox(height: 26.h),
             Text.rich(
               TextSpan(

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/core/services/get_it_services.dart';
+import 'package:fruits_hub/features/auth/domain/repo/auth_repo.dart';
+import 'package:fruits_hub/features/auth/presentation/controller/signup_cubit/signup_cubit.dart';
 import 'package:fruits_hub/features/auth/presentation/views/login_view.dart';
 import 'package:fruits_hub/features/auth/presentation/views/signup_view.dart';
 import 'package:fruits_hub/features/on_boarding/presentation/views/on_boarding_view.dart';
@@ -13,7 +17,11 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case LoginView.routeName:
       return MaterialPageRoute(builder: (context) => const LoginView());
     case SignUpView.routeName:
-      return MaterialPageRoute(builder: (context) => const SignUpView());
+      return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+                create: (context) => SignupCubit(getIt<AuthRepo>()),
+                child: const SignUpView(),
+              ));
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }
