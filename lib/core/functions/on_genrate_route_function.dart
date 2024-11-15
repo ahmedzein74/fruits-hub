@@ -14,12 +14,12 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const SplashView());
     case OnBoardingView.routeName:
       return MaterialPageRoute(builder: (context) => const OnBoardingView());
-    case SigninView.routeName:
-      return MaterialPageRoute(builder: (context) => const SigninView());
+    case SignInView.routeName:
+      return MaterialPageRoute(builder: (context) => const SignInView());
     case SignUpView.routeName:
       return MaterialPageRoute(
           builder: (context) => BlocProvider(
-                create: (context) => SignupCubit(getIt<AuthRepo>()),
+                create: (context) => SignUpCubit(getIt<AuthRepo>()),
                 child: const SignUpView(),
               ));
     default:

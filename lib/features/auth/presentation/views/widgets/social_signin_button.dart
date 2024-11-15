@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_hub/core/utils/app_text_styels.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
-class SocialLoginButton extends StatelessWidget {
-  const SocialLoginButton({
+class SocialSignInButton extends StatelessWidget {
+  const SocialSignInButton({
     super.key,
     required this.label,
     required this.image,

@@ -5,17 +5,17 @@ import 'package:meta/meta.dart';
 
 part 'signup_state.dart';
 
-class SignupCubit extends Cubit<SignupState> {
-  SignupCubit(this.authRepo) : super(SignupInitial());
+class SignUpCubit extends Cubit<SignUpState> {
+  SignUpCubit(this.authRepo) : super(SignUpInitial());
   final AuthRepo authRepo;
   Future<void> createUserWithEmailAndPassword(
       String email, String password, String name) async {
-    emit(SignupLoading());
+    emit(SignUpLoading());
     final result =
         await authRepo.createUserWithEmailAndPassword(email, password, name);
     result.fold(
-      (failure) => emit(SignupFailure(message: failure.message)),
-      (userEntity) => emit(SignupSuccess(userEntity: userEntity)),
+      (failure) => emit(SignUpFailure(message: failure.message)),
+      (userEntity) => emit(SignUpSuccess(userEntity: userEntity)),
     );
   }
 }

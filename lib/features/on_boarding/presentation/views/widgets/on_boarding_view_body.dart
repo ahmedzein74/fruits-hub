@@ -65,7 +65,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             child: CustomButton(
                 onPressed: () {
                   SharedPreferencesService.setBool(kIsOnBoardingSeen, true);
-                  Navigator.pushReplacementNamed(context, SigninView.routeName);
+                  Navigator.pushReplacementNamed(context, SignInView.routeName);
                 },
                 text: 'ابدأ الان'),
           ),

@@ -16,7 +16,7 @@ class SignUpViewBody extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 24.h),
-            const SignupForm(),
+            const SignUpForm(),
             SizedBox(height: 26.h),
             Text.rich(
               TextSpan(

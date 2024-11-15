@@ -9,14 +9,14 @@ import 'package:fruits_hub/features/auth/presentation/controller/signup_cubit/si
 
 import 'terms_and_condition.dart';
 
-class SignupForm extends StatefulWidget {
-  const SignupForm({super.key});
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({super.key});
 
   @override
-  State<SignupForm> createState() => _SignupFormState();
+  State<SignUpForm> createState() => _SignUpFormState();
 }
 
-class _SignupFormState extends State<SignupForm> {
+class _SignUpFormState extends State<SignUpForm> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   late String name, email, password;
@@ -24,12 +24,12 @@ class _SignupFormState extends State<SignupForm> {
   late bool isTermsAccept = false;
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignupCubit, SignupState>(
+    return BlocConsumer<SignUpCubit, SignUpState>(
       listener: (context, state) {
-        if (state is SignupSuccess) {
+        if (state is SignUpSuccess) {
           buildSnackBar(context, 'تم التسجيل بنجاح');
         }
-        if (state is SignupFailure) {
+        if (state is SignUpFailure) {
           buildSnackBar(context, state.message);
         }
       },
@@ -112,7 +112,7 @@ class _SignupFormState extends State<SignupForm> {
                 },
               ),
               SizedBox(height: 30.h),
-              state is SignupLoading
+              state is SignUpLoading
                   ? const Center(
                       child: CircularProgressIndicator(
                       color: ColorsManager.primaryColor,
@@ -123,7 +123,7 @@ class _SignupFormState extends State<SignupForm> {
                           formKey.currentState!.save();
                           if (isTermsAccept) {
                             context
-                                .read<SignupCubit>()
+                                .read<SignUpCubit>()
                                 .createUserWithEmailAndPassword(
                                     email, password, name);
                           } else {
