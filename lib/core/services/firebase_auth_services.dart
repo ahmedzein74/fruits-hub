@@ -40,12 +40,18 @@ class FirebaseAuthServices {
     } on FirebaseAuthException catch (e) {
       log('Exception in firebase auth: ${e.toString()} and e.code= ${e.code}');
       if (e.code == 'user-not-found') {
-        throw CustomException(message: 'البريد الالكتروني غير مسجل');
+        throw CustomException(message: 'البريد الالكتروني او الرقم السري غير صحيح');
       } else if (e.code == 'wrong-password') {
-        throw CustomException(message: 'الرقم السري غير صحيح');
+        throw CustomException(message: 'البريد الالكتروني او الرقم السري غير صحيح');
       } else if (e.code == 'network-request-failed') {
         throw CustomException(message: 'لا يوجد اتصال بالانترنت');
-      } else {
+
+      }
+      else if (e.code == 'invalid-credential') {
+                throw CustomException(message: 'البريد الالكتروني او الرقم السري غير صحيح');
+
+      }
+       else {
         throw CustomException(message: 'حدث خطأ . يرجى المحاولة مرة أخرى');
       }
     } catch (e) {

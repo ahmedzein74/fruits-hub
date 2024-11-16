@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:fruits_hub/core/errors/exceptions.dart';
 import 'package:fruits_hub/core/errors/failure.dart';
@@ -20,13 +19,15 @@ class AuthRepoImpl extends AuthRepo {
           email: email, password: password);
       return right(UserModel.fromFirebaseUser(user));
     } on CustomException catch (e) {
+      log('Exception in authRepoImpl createUserWithEmailAndPassword:  ${e.toString()}');
       return left(ServerFailure(e.message));
     } catch (e) {
-      log('Exception in auth repo impl createUserWithEmailAndPassword:  ${e.toString()}');
+      log('Exception in authRepoImpl createUserWithEmailAndPassword:  ${e.toString()}');
       return left(ServerFailure('حدث خطأ ما ، يرجى المحاولة في وقت لاحق'));
     }
   }
 
+  @override
   Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
       String email, String password) async {
     try {
@@ -34,9 +35,10 @@ class AuthRepoImpl extends AuthRepo {
           email: email, password: password);
       return right(UserModel.fromFirebaseUser(user));
     } on CustomException catch (e) {
+      log('Exception in authRepoImpl signInWithEmailAndPassword:  ${e.toString()}');
       return left(ServerFailure(e.message));
     } catch (e) {
-      log('Exception in auth repo impl signInWithEmailAndPassword:  ${e.toString()}');
+      log('Exception in authRepoImpl signInWithEmailAndPassword:  ${e.toString()}');
       return left(ServerFailure('حدث خطأ ما ، يرجى المحاولة في وقت لاحق'));
     }
   }
