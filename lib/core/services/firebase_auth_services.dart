@@ -14,6 +14,7 @@ class FirebaseAuthServices {
         email: email,
         password: password,
       );
+      await verifyEmail();
       return credential.user!;
     } on FirebaseAuthException catch (e) {
       log('Exception in firebase auth: ${e.toString()} and e.code= ${e.code}');
@@ -29,6 +30,10 @@ class FirebaseAuthServices {
     } catch (e) {
       throw CustomException(message: 'حدث خطأ . يرجى المحاولة مرة أخرى');
     }
+  }
+
+  Future<void> verifyEmail() async {
+    await FirebaseAuth.instance.currentUser!.sendEmailVerification();
   }
 
   Future<User> signInWithEmailAndPassword(

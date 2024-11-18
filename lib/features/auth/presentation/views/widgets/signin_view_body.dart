@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,9 +35,10 @@ class _SignInViewBodyState extends State<SignInViewBody> {
     return BlocConsumer<SignInCubit, SignInState>(
       listener: (context, state) {
         if (state is SignInSuccess) {
-          buildSnackBar(context, 'تم تسجيل الدخول بنجاح');
-        }
-        if (state is SignInFailure) {
+          FirebaseAuth.instance.currentUser!.emailVerified
+              ? buildSnackBar(context, 'تم تسجيل الدخول بنجاح')
+              : buildSnackBar(context, 'يرجى التحقق من بريدك الالكترونى');
+        } else if (state is SignInFailure) {
           buildSnackBar(context, state.message);
         }
       },
@@ -137,12 +141,18 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                       context.read<SignInCubit>().signInWithGoogle();
                     },
                   ),
-                  SizedBox(height: 16.h),
-                  SocialSignInButton(
-                    label: 'تسجيل بواسطة أبل',
-                    image: Assets.assetsImagesAppleIcon,
-                    onPress: () {},
-                  ),
+                  Platform.isIOS
+                      ? Column(
+                          children: [
+                            SizedBox(height: 16.h),
+                            SocialSignInButton(
+                              label: 'تسجيل بواسطة أبل',
+                              image: Assets.assetsImagesAppleIcon,
+                              onPress: () {},
+                            )
+                          ],
+                        )
+                      : const SizedBox(),
                   SizedBox(height: 16.h),
                   SocialSignInButton(
                     label: 'تسجيل بواسطة فيسبوك',

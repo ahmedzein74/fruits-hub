@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,7 +28,8 @@ class _SignUpFormState extends State<SignUpForm> {
     return BlocConsumer<SignUpCubit, SignUpState>(
       listener: (context, state) {
         if (state is SignUpSuccess) {
-          buildSnackBar(context, 'تم التسجيل بنجاح');
+          buildSnackBar(
+              context, ' تم التسجيل بنجاح قم بتاكيد البريد الالكترونى');
         }
         if (state is SignUpFailure) {
           buildSnackBar(context, state.message);
