@@ -31,10 +31,11 @@ class FireStoreServices implements DatabaseServices {
         .collection(path)
         .doc(documentId)
         .get(); // Get the document
-    return data.data() as Map<String, dynamic>; // Return the document data
+    return data.data()
+        as Map<String, dynamic>; // Return the document data as a Map
   }
 
-  // Checks if a document exists in Firestore.
+  // Checks if a document exists in Firestore
   // Returns true if the document exists, false otherwise.
   @override
   Future<bool> checkisUserExist(
