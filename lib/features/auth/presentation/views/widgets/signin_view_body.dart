@@ -14,6 +14,7 @@ import 'package:fruits_hub/core/widgets/custom_text_form_field.dart';
 import 'package:fruits_hub/features/auth/presentation/controller/signin_cubit/signin_cubit.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/dont_have_an_account_widget.dart';
 import 'package:fruits_hub/features/auth/presentation/views/widgets/social_signin_button.dart';
+import 'package:fruits_hub/features/home/presentation/views/home_view.dart';
 
 import 'or_divider.dart';
 
@@ -35,9 +36,13 @@ class _SignInViewBodyState extends State<SignInViewBody> {
     return BlocConsumer<SignInCubit, SignInState>(
       listener: (context, state) {
         if (state is SignInSuccess) {
-          FirebaseAuth.instance.currentUser!.emailVerified
-              ? buildSnackBar(context, 'تم تسجيل الدخول بنجاح')
-              : buildSnackBar(context, 'يرجى التحقق من بريدك الالكترونى');
+          if (FirebaseAuth.instance.currentUser != null &&
+              FirebaseAuth.instance.currentUser!.emailVerified) {
+            buildSnackBar(context, 'تم تسجيل الدخول بنجاح');
+            Navigator.pushReplacementNamed(context, HomeView.routeName);
+          } else {
+            buildSnackBar(context, 'يرجى التحقق من بريدك الالكترونى');
+          }
         } else if (state is SignInFailure) {
           buildSnackBar(context, state.message);
         }

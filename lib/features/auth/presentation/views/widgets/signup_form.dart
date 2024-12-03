@@ -27,8 +27,9 @@ class _SignUpFormState extends State<SignUpForm> {
     return BlocConsumer<SignUpCubit, SignUpState>(
       listener: (context, state) {
         if (state is SignUpSuccess) {
-          buildSnackBar(
-              context, ' تم التسجيل بنجاح قم بتاكيد البريد الالكترونى');
+          buildSnackBar(context,
+              'تم تسجيل حسابك بنجاح قم بتاكيد البريد الالكترونى ثم فم بتسجيل الدخول');
+          Navigator.pop(context);
         }
         if (state is SignUpFailure) {
           buildSnackBar(context, state.message);
