@@ -6,6 +6,7 @@ import 'package:fruits_hub/features/auth/presentation/controller/signin_cubit/si
 import 'package:fruits_hub/features/auth/presentation/controller/signup_cubit/signup_cubit.dart';
 import 'package:fruits_hub/features/auth/presentation/views/signin_view.dart';
 import 'package:fruits_hub/features/auth/presentation/views/signup_view.dart';
+import 'package:fruits_hub/features/best_selling_fruits/presentation/views/best_selling_view.dart';
 import 'package:fruits_hub/features/home/presentation/views/home_view.dart';
 import 'package:fruits_hub/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:fruits_hub/features/splash/presentation/views/splash_view.dart';
@@ -16,6 +17,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const SplashView());
     case OnBoardingView.routeName:
       return MaterialPageRoute(builder: (context) => const OnBoardingView());
+
+    case BestSellingView.routeName:
+      return MaterialPageRoute(builder: (context) => const BestSellingView());
     case SignInView.routeName:
       return MaterialPageRoute(
           builder: (context) => BlocProvider(
