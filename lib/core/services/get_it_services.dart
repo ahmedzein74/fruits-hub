@@ -12,8 +12,8 @@ void setupGetIt() {
   getIt.registerSingleton<DatabaseServices>(FireStoreServices());
   getIt.registerSingleton<AuthRepo>(
     AuthRepoImpl(
-      firebaseAuthServices: getIt<FirebaseAuthServices>(),
-      databaseServices: getIt<DatabaseServices>(),
+      firebaseAuthService: getIt<FirebaseAuthServices>(),
+      databaseService: getIt<DatabaseServices>(),
     ),
   );
 }

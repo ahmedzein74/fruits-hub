@@ -14,4 +14,21 @@ class SharedPreferencesService {
   static bool getBool(String key) {
     return _prefs.getBool(key) ?? false;
   }
+
+  static Future<bool> saveData(
+      {required String key, required dynamic value}) async {
+    if (value is int) {
+      return await _prefs.setInt(key, value);
+    } else if (value is String) {
+      return await _prefs.setString(key, value);
+    } else if (value is double) {
+      return await _prefs.setDouble(key, value);
+    } else {
+      return await _prefs.setBool(key, value);
+    }
+  }
+
+  static dynamic getData({required String key}) {
+    return _prefs.get(key);
+  }
 }
